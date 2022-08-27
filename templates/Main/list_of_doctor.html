@@ -1,0 +1,132 @@
+{% extends 'includes/shop/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .card-css {
+        /* border: 2px solid black; */
+        box-shadow: -2px 2px 4px black;
+        position: relative;
+        border-width: 0px !important;
+        border: 1px solid rgb(70, 70, 70) !important;
+    }
+
+    .card-header-css {
+        text-align: left !important;
+        border-bottom: 4px solid red;
+        color: red;
+        background-color: #fff;
+        font-weight: bold;
+    }
+
+    .card-header-css-2 {
+        /* text-align: left !important; */
+        border-bottom: none !important;
+        background-color: none !important;
+        font-weight: bold;
+    }
+
+    .bg-image {
+        position: relative;
+        z-index: 1;
+    }
+
+    .bg-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url({% static 'img/doctor-profile/bg.jpg' %});
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+        opacity: .1;
+    }
+
+    .a {
+        color: #fff;
+        background-color: #0A9A73;
+        font-weight: bold;
+    }
+
+    .fa-solid {
+        color: #0A9A73;
+        margin-right: .5rem;
+    }
+
+    .image {
+        width: 9rem;
+        height: 9rem;
+        border-radius: 50%;
+        border: 1px solid #000;
+    }
+
+    .input-group-text-css {
+        border: none;
+        background-color: transparent;
+        font-weight: bold;
+        padding: 0.375rem 0.20rem !important;
+    }
+
+    .btn-css {
+        border: none;
+    }
+
+    .a {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding: 0px !important;
+        border-top: 0px !important;
+    }
+
+    .btn-css {
+        color: #fff;
+        font-size: 1.3rem !important;
+        font-weight: bold
+    }
+    .doctor-list{
+        margin-top: .7rem;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    
+    <center class="doctor-list">Doctors List</center>
+    <div style="border-bottom: 2px solid black" class="mb-4"></div>
+    <div class="row justify-content-center flex-wrap">
+        {% for i in doctor %}
+        <div class="mb-4" style="width: 16rem;">
+            <div class="card text-center card-css">
+                <div class="card-header card-header-css d-flex justify-content-center">
+                    Dr. {{i.name}}
+                </div>
+                <div class="bg-image">
+
+                    <div class="text-center mt-2">
+                        <img src="/media/{{i.profile_pic}}" class=" image" alt="...">
+                    </div>
+                    <div class="input-group d-flex justify-content-center">
+                        <span class="input-group-text input-group-text-css" id="basic-addon1">MVR</span>
+                        <span class="input-group-text input-group-text-css" id="basic-addon1">{{i.fees}}</span>
+                    </div>
+                </div>
+                <div class="card-footer a">
+                    <a href="{% url 'doctor_booking' i.id %}" class="btn btn-css">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+       
+       
+
+    </div>
+
+</div>
+
+{% endblock content %}

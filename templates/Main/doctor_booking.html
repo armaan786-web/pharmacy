@@ -1,0 +1,156 @@
+{% extends 'includes/shop/base.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'> {% endcomment %}
+
+{% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
+
+<link rel="stylesheet" href="{% static 'css/booking/style.css' %}">
+
+<style>
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"],
+    textarea {
+        height: 40px;
+        margin-bottom: 0px;
+    }
+
+    input[type="submit"] {
+        height: 50px !important;
+        width: auto !important;
+    }
+</style>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+                            <div class="info-wrap bg-primary w-100 p-md-5 p-4">
+                                <h3>Doctor's Details</h3>
+
+                                <div class="w-100 d-flex align-items-center justify-content-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-user-doctor fa-5x"></span>
+                                    </div>
+                                </div>
+                                <div class="dbox w-100 d-flex align-items-center justify-content-center">
+                                    <div class=" d-flex align-items-center justify-content-center">
+                                        <span style="font-size: 20px">Dr.{{doctor.name}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-user-doctor"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Speciality:</span> <a href="#">{{doctor.speciality}}</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-hospital"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Experience:</span> <a href="#">{{doctor.experience}}</a></p>
+                                    </div>
+                                </div>
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-stethoscope"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Degree:</span> <a href="#">{{doctor.degree}}</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <h3 class="mb-4">Book Your Appointment</h3>
+                                <div id="form-message-warning" class="mb-4"></div>
+                                <div id="form-message-success" class="mb-4">
+                                    Your message was sent, thank you!
+                                </div>
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="name">Select Time</label>
+                                               <input type="time" class="form-control" name="select_tym"
+                                                    placeholder="select time">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="email">Select Date</label>
+                                                <input type="date" class="form-control" name="selected_date" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Contact Type</label>
+                                                <select class="form-select form-control"
+                                                    aria-label="Default select example" name="contact_type">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="At Clinic">At Clinic</option>
+                                                    <option value="Viber">Viber</option>
+                                                    <option value="WhatApp">WhatApp</option>
+                                                    <option value="SMS">SMS</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Contact Number</label>
+                                                <input type="Number" class="form-control" name="contact_number"
+                                                    placeholder="Phone No">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <div class="form-group">
+                                                <label class="label" for="subject">Payment Type</label>
+                                                <select class="form-select form-control"
+                                                    aria-label="Default select example" name="payment_type">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="COD">COD</option>
+                                                    <option value="Pay Online">Pay Online</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary fs-5">Booking</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% comment %} <script src="{% static 'js/booking/js/jquery.min.js' %}"></script>
+<script src="{% static 'js/booking/js/popper.js' %}"></script>
+<script src="{% static 'js/booking/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/booking/js/jquery.validate.min.js' %}"></script> {% endcomment %}
+{% comment %} <script src="{% static 'js/booking/js/main.js' %}"></script> {% endcomment %}
+{% endblock content %}
